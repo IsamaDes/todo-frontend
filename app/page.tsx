@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import TodoItem from '@/components/TodoItem';
-import { fetchTodos, createTodo, updateTodo, deleteTodo, Todo } from '@/services/todoService';
+import TodoItem from '../components/TodoItem';
+import { fetchTodos, createTodo, updateTodo, deleteTodo, Todo } from '../services/todoService';
 
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
