@@ -19,8 +19,8 @@ export const fetchTodos = async (): Promise<Todo[]> => {
 };
 
 // POST a new todo
-export const createTodo = async (title: string, priority: 'low' | 'medium' | 'high'): Promise<Todo> => {
-  const response = await axios.post<Todo>(API_URL, { title, priority });
+export const createTodo = async (title: string, priority: 'low' | 'medium' | 'high', dueDate: string): Promise<Todo> => {
+  const response = await axios.post<Todo>(API_URL, { title, priority, dueDate });
   return response.data;
 };
 
