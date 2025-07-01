@@ -32,6 +32,11 @@ export default function TodoItem({ todo, onToggle, onDelete }: Props) {
           Priority: {todo.priority.toUpperCase()}
         </span>
       </div>
+      {todo.dueDate && (
+          <span className="text-xs text-gray-500">
+            Due: {new Date(todo.dueDate).toLocaleString()}
+          </span>
+        )}
       <div className="flex gap-2">
         <button onClick={onToggle} className="text-green-600">
           ✓
