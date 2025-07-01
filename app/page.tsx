@@ -5,6 +5,7 @@ import TodoItem from '../components/TodoItem';
 import { fetchTodos, createTodo, updateTodo, deleteTodo, Todo } from '../services/todoService';
 
 export default function Home() {
+    const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('low');
   const [todos, setTodos] = useState<Todo[]>([]);
   const [title, setTitle] = useState('');
 
@@ -14,7 +15,7 @@ export default function Home() {
 
   const handleAdd = async () => {
     if (!title.trim()) return;
-    const newTodo = await createTodo(title);
+    const newTodo = await createTodo(title, priority);
     setTodos((prev) => [...prev, newTodo]);
     setTitle('');
   };
@@ -42,6 +43,17 @@ export default function Home() {
         <button onClick={handleAdd} className="bg-blue-500 text-white px-4 rounded">
           Add
         </button>
+
+        <select 
+         value={priority}
+            onChange={(e) => setPriority(e.target.value as 'low' | 'medium' | 'high')}
+            className="border px-2 py-1 rounded"
+        >
+            <option>low</option>
+            <option>medium</option>
+            <option>high</option>
+
+        </select>
       </div>
       <div>
         {todos.map((todo) => (
