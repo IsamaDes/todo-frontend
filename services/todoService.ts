@@ -1,34 +1,33 @@
+import axios from 'axios';
+
 export interface Todo {
   _id: string;
   title: string;
   completed: boolean;
 }
 
-const API_URL = 'http://localhost:5000/api/todos';
+// Use env variable or fallback
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/todos';
 
+// GET all todos
 export const fetchTodos = async (): Promise<Todo[]> => {
-  const res = await fetch(API_URL);
-  return res.json();
+  const response = await axios.get<Todo[]>(API_URL);
+  return response.data;
 };
 
+// POST a new todo
 export const createTodo = async (title: string): Promise<Todo> => {
-  const res = await fetch(API_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title }),
-  });
-  return res.json();
+  const response = await axios.post<Todo>(API_URL, { title });
+  return response.data;
 };
 
+// PUT (update) a todo
 export const updateTodo = async (id: string, completed: boolean): Promise<Todo> => {
-  const res = await fetch(`${API_URL}/${id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ completed }),
-  });
-  return res.json();
+  const response = await axios.put<Todo>(`${API_URL}/${id}`, { completed });
+  return response.data;
 };
 
+// DELETE a todo
 export const deleteTodo = async (id: string): Promise<void> => {
-  await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+  await axios.delete(`${API_URL}/${id}`);
 };
