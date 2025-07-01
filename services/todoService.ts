@@ -4,7 +4,10 @@ export interface Todo {
   _id: string;
   title: string;
   completed: boolean;
+  priority: 'low' | 'medium' | 'high';
+
 }
+
 
 // Use env variable or fallback
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/todos';
@@ -22,8 +25,9 @@ export const createTodo = async (title: string, priority: 'low' | 'medium' | 'hi
 };
 
 // PUT (update) a todo
-export const updateTodo = async (id: string, completed: boolean): Promise<Todo> => {
-  const response = await axios.put<Todo>(`${API_URL}/${id}`, { completed });
+export const updateTodo = async (id: string, completed: boolean,   priority: 'low' | 'medium' | 'high'
+): Promise<Todo> => {
+  const response = await axios.put<Todo>(`${API_URL}/${id}`, { completed, priority });
   return response.data;
 };
 

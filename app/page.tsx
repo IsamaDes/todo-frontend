@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import TodoItem from '../components/TodoItem';
-import { fetchTodos, createTodo, updateTodo, deleteTodo, Todo } from '../services/todoService';
+import { fetchTodos, createTodo, updateTodo, deleteTodo, Todo } from '../services/todoService'; 
 
 export default function Home() {
     const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('low');
@@ -21,7 +21,7 @@ export default function Home() {
   };
 
   const handleToggle = async (id: string, completed: boolean) => {
-    const updated = await updateTodo(id, !completed);
+    const updated = await updateTodo(id, !completed, priority);
     setTodos((prev) => prev.map((todo) => (todo._id === id ? updated : todo)));
   };
 
