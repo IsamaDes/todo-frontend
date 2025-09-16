@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -7,8 +7,8 @@ export default function OnboardingPage() {
   const [longTermGoals, setLongTermGoals] = useState("");
   const [reason, setReason] = useState("");
   const [timeLine, setTimeLine] = useState("");
-
   const router = useRouter();
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,15 +36,15 @@ export default function OnboardingPage() {
             className="w-full p-3 border rounded-lg focus:ring focus:ring-green-400"
             rows={5}
           />
-          <textarea 
-          value={reason}
-          onChange={(e) => setReason(e.target.value)}
-          placeholder="Why are you setting this Longterm goal"
+          <textarea
+            value={reason}
+            onChange={(e) => setReason(e.target.value)}
+            placeholder="Why are you setting this Longterm goal"
             className="w-full p-3 border rounded-lg focus:ring focus:ring-green-400"
-            rows={5}/>
-            
-            <input type="date" value={timeLine} onChange={(e) => setTimeLine(e.target.value)} 
-            className="w-full p-3 border rounded-lg focus:ring focus:ring-green-400"/>
+            rows={5} />
+
+          <input type="date" value={timeLine} onChange={(e) => setTimeLine(e.target.value)}
+            className="w-full p-3 border rounded-lg focus:ring focus:ring-green-400" />
           <button
             type="submit"
             className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-xl text-lg transition"

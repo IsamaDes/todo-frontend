@@ -2,14 +2,16 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import signup from "../../services/signupService";
+import signupService from "../../services/signupService";
 import Image from "next/image";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,10 +33,13 @@ export default function RegisterPage() {
 
     setError("");
 
-    await signup(email, password);
-
-    // redirect to dashboard
-    router.push("/login");
+    const response = await signupService(name, email, password);
+    console.log(response)
+    const verificationToken = response.verificationToken;
+    console.log(verificationToken);
+    if (!verificationToken) return;
+    localStorage.setItem("verificationToken", verificationToken);
+    router.push("/verify-user");
   };
 
 
@@ -61,6 +66,13 @@ export default function RegisterPage() {
 
         <form onSubmit={handleRegister} className="flex flex-col gap-4">
           {error && <p style={{ color: "red" }}>{error}</p>}
+          <input
+            type="name"
+            placeholder="Name"
+            className="w-full p-3 border rounded-lg"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
           <input
             type="email"
             placeholder="Email"

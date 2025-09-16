@@ -2,30 +2,51 @@
 
 import { useEffect, useState } from 'react';
 import TodoItem from '../../components/TodoItem';
-import { fetchTodos, createTodo, updateTodo, deleteTodo, Todo } from '../../services/todoService';
-import { useRouter } from 'next/navigation';
+import { createTodo, updateTodo, deleteTodo, Todo } from '../../services/todoService';
+// import { useRouter } from 'next/navigation';
 
-export default function Home() {
 
-    const [mounted, setMounted] = useState(false);
+export default function todoList() {
     const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('low');
     const [todos, setTodos] = useState<Todo[]>([]);
     const [title, setTitle] = useState('');
     const [dueDate, setDueDate] = useState('');
-    const router = useRouter();
+    const [loading, setLoading] = useState(true);
+
+
+    const fetchTodosClient = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) throw new Error('No access token found');
+
+            const res = await fetch('http://localhost:5000/api/auth/todos', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (!res.ok) throw new Error('Failed to fetch todos');
+            const data: Todo[] = await res.json();
+            setTodos(data);
+        } catch (err) {
+            console.error(err);
+            setTodos([]);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        setMounted(true);
-        fetchTodos().then(setTodos);
+        fetchTodosClient();
     }, []);
-
-    if (!mounted) return <div />;
 
     const handleAdd = async () => {
         if (!title.trim()) return;
         const newTodo = await createTodo(title, priority, dueDate);
         setTodos((prev) => [...prev, newTodo]);
         setTitle('');
+        setDueDate('');
     };
 
     const handleToggle = async (id: string, completed: boolean, priority: 'low' | 'medium' | 'high', dueDate: string) => {
@@ -38,10 +59,11 @@ export default function Home() {
         setTodos((prev) => prev.filter((todo) => todo._id !== id));
     };
 
+    if (loading) return <p>Loading todos...</p>;
 
 
     return (
-        <main>
+        <div>
             <div className="flex justify-between items-center mb-4 h-[50px]  rounded-lg">
 
                 <div className="flex justify-end gap-2 ">
@@ -107,6 +129,6 @@ export default function Home() {
                     />
                 ))}
             </div>
-        </main>
+        </div>
     );
 }

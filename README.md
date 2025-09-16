@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📝 To-Do Frontend
 
-## Getting Started
+This is the frontend of the To-Do App — a simple task management application built with React and Next.js (App Router).
+It allows users to create, update, mark as completed, and delete tasks with priority levels and due dates.
 
-First, run the development server:
+🚀 Live Demo - https://todo-frontend-rosy-five.vercel.app/dashboard
 
-```bash
+🔗 Open the hosted frontend
+
+⚡ Features
+
+📋 Add new tasks with title, due date, and priority (low, medium, high)
+
+✅ Mark tasks as completed or uncompleted
+
+🗑️ Delete tasks
+
+⚡ Real-time updates without page reload
+
+🎨 Responsive UI with Tailwind CSS
+
+🔐 User authentication (signup and login) integrated with backend
+
+🛠️ Tech Stack
+
+Next.js (App Router + React)
+
+TypeScript
+
+Tailwind CSS
+
+Axios (for API calls)
+
+📦 Getting Started 
+1. Clone the repository
+git clone https://github.com/IsamaDes/todo-frontend.git
+cd todo-frontend
+
+2. Install dependencies
+npm install
+
+3. Configure environment
+
+Create a .env.local file in the root folder and add your backend API URL:
+
+NEXT_PUBLIC_API_URL=http://localhost:5000/api
+
+4. Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Then open http://localhost:3000
+ to see it in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+📁 Project Structure
+todo-frontend/
+│
+├── app/               # Next.js app directory (pages & routes)
+├── components/        # Reusable UI components
+├── services/          # API service calls
+├── public/             # Static assets
+├── package.json
+└── README.md
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+🤝 Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributions, issues, and feature requests are welcome!
+Feel free to fork the repo and submit a pull request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📄 License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.

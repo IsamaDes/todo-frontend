@@ -1,7 +1,7 @@
-const axios = require('axios');
+import axiosInstance from "../utils/axiosInstance";
 
-const signup = async (email: string, password: string) => {
-    const response = await axios.post('http://localhost:5000/api/auth/register', { email, password });
+const signup = async (name: string, email: string, password: string) => {
+    const response = await axiosInstance.post('/auth/register', { name, email, password });
     return response.data;
 }
 

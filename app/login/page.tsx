@@ -13,9 +13,6 @@ export default function LoginPage() {
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-
-
-
         await login(email, password);
         router.push("/dashboard");
     };
@@ -42,8 +39,6 @@ export default function LoginPage() {
                 </h1>
 
                 <form onSubmit={handleLogin} className="space-y-5">
-
-
                     <div>
                         <input
                             type="email"

@@ -1,25 +1,19 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TodoItem from '../components/TodoItem';
-import { fetchTodos, createTodo, updateTodo, deleteTodo, Todo } from '../services/todoService';
+import { createTodo, updateTodo, deleteTodo, Todo } from '../services/todoService';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
 
-  const [mounted, setMounted] = useState(false);
   const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('low');
   const [todos, setTodos] = useState<Todo[]>([]);
   const [title, setTitle] = useState('');
   const [dueDate, setDueDate] = useState('');
   const router = useRouter();
 
-  useEffect(() => {
-    setMounted(true);
-    fetchTodos().then(setTodos);
-  }, []);
 
-  if (!mounted) return <div />;
 
   const handleAdd = async () => {
     if (!title.trim()) return;
@@ -42,7 +36,7 @@ export default function Home() {
   const handleLogin = () => router.push('/login');
 
   return (
-    <main>
+    <div>
       <div className="flex justify-between items-center mb-4 h-[50px]  rounded-lg">
 
         <div className="flex justify-end gap-2 ">
@@ -116,6 +110,6 @@ export default function Home() {
           />
         ))}
       </div>
-    </main>
+    </div>
   );
 }

@@ -1,3 +1,4 @@
+
 // app/layout.tsx
 import './globals.css';
 
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-gray-100 p-8">{children}</body>
+      <body className="min-h-screen bg-gray-100 p-8"
+        suppressHydrationWarning={true}
+      >{children}</body>
     </html>
   );
 }
