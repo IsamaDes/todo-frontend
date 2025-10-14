@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import TodoItem from '../../components/TodoItem';
-import { fetchTodos, createTodo, updateTodo, deleteTodo, Todo } from '../../services/todoService';
+import { fetchTodos, createTodo, updateTodo, deleteTodo, Todo } from '../services/todoService';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {

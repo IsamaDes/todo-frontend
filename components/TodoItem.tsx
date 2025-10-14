@@ -1,4 +1,4 @@
-import { Todo } from "../services/todoService";
+import { Todo } from "../app/services/todoService";
 
 interface Props {
   todo: Todo;

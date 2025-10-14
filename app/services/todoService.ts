@@ -1,4 +1,4 @@
-import axiosInstance from "../utils/axiosInstance";
+import axiosInstance from "../../utils/AxiosInstance";
 
 export interface Todo {
   _id: string;

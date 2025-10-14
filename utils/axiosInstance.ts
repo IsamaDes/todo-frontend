@@ -1,10 +1,8 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL:
-    window.location.hostname === "localhost"
-      ? "http://localhost:5000/api"
-      : "https://eat-right-be.onrender.com/api",
+    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000",
+
   headers: {
     "Content-Type": "application/json",
   },
@@ -28,20 +26,20 @@ axiosInstance.interceptors.request.use(
 );
 
 // Add response interceptor for debugging
-axiosInstance.interceptors.response.use(
-  (response) => {
-    console.log('✅ Response:', response.status, response.config.url);
-    return response;
-  },
-  (error) => {
-    console.error('❌ Response Error:', {
-      status: error.response?.status,
-      url: error.config?.url,
-      message: error.response?.data?.message || error.message
-    });
-    return Promise.reject(error);
-  }
-);
+// axiosInstance.interceptors.response.use(
+//   (response) => {
+//     console.log('✅ Response:', response.status, response.config.url);
+//     return response;
+//   },
+//   (error) => {
+//     console.error('❌ Response Error:', {
+//       status: error.response?.status,
+//       url: error.config?.url,
+//       message: error.response?.data?.message || error.message
+//     });
+//     return Promise.reject(error);
+//   }
+// );
 
 // Handle token refresh on 401
 axiosInstance.interceptors.response.use(
@@ -58,7 +56,7 @@ axiosInstance.interceptors.response.use(
         const { data } = await axios.post(
           window.location.hostname === "localhost"
             ? "http://localhost:5000/api/auth/refresh-token"
-            : "https://eat-right-be.onrender.com/api/auth/refresh-token",
+            : "https://todo-backend.onrender.com/api/auth/refresh-token",
           {},
           { withCredentials: true }
         );

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import TodoItem from '../components/TodoItem';
-import { fetchTodos, createTodo, updateTodo, deleteTodo, Todo } from '../services/todoService';
+import { fetchTodos, createTodo, updateTodo, deleteTodo, Todo } from './services/todoService';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
@@ -38,7 +38,7 @@ export default function Home() {
     setTodos((prev) => prev.filter((todo) => todo._id !== id));
   };
 
-  const handleSignup = () => router.push('/signup');
+  const handleSignup = () => router.push('/register');
   const handleLogin = () => router.push('/login');
 
   return (
