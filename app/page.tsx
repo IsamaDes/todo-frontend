@@ -43,7 +43,7 @@ export default function Home() {
 
   return (
     <main>
-      <div className="flex justify-between items-center mb-4 h-[50px]  rounded-lg">
+      <div className="flex justify-between items-center mb-4 h-[50px]  rounded-lg p-8">
 
         <div className="flex justify-end gap-2 ">
           <a
@@ -76,7 +76,7 @@ export default function Home() {
       </div>
 
 
-
+<div className='p-8'>
       <h1 className="text-2xl font-bold mb-4">My To-Do App</h1>
       <div className="flex gap-2 mb-4">
         <input
@@ -115,6 +115,7 @@ export default function Home() {
             onDelete={() => handleDelete(todo._id)}
           />
         ))}
+      </div>
       </div>
     </main>
   );

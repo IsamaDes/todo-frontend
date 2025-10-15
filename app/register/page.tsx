@@ -38,7 +38,6 @@ const Register = () => {
       const response = await registerUser(formData);
       setSuccess(response.message);
      if(response) console.log(response)
-      localStorage.setItem("access_token", response.verificationToken)
      router.push("/login");
     } catch (err: any) {
       setError(err.message || "Registration failed");

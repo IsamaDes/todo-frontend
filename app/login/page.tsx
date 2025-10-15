@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { loginUser } from "../services/authService";
 import { Eye, EyeOff } from 'lucide-react';
+import Image from "next/image";
 
 
 const Login = () => {
@@ -25,10 +26,10 @@ const Login = () => {
       const response = await loginUser({ email, password });
       console.log("Full response:", response);
       console.log("User role:", response.data.role);
-      console.log("Token:", response.data.token);
+     
       const userRole =  response.data.role;
       const userName =  response.data.name;
-      const token =  response.data.token
+     
        
        localStorage.setItem("user_name", userName);
        localStorage.setItem("user", JSON.stringify(response.data));
@@ -36,7 +37,7 @@ const Login = () => {
       setRole(userRole);
 
       localStorage.setItem("role", userRole);
-      localStorage.setItem("access_token", token);
+     
 
       if (userRole === "admin") router.push("/admin");
       else if (userRole === "nutritionist") router.push("/nutritionist");
@@ -71,13 +72,13 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div className=" h-screen flex md:flex-row">
       {/* Left Section – Image */}
-      <div className="relative w-full md:w-1/2 h-64 md:h-auto">
-        {/* <img src={healthyfood}
+      <div className="relative w-full md:w-1/2  md:h-auto">
+        <img src="/taskimg.jpg"
           alt="Healthy food"
           className="absolute inset-0 w-full h-full object-cover"
-        /> */}
+        />
         <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white p-8">
           <h1 className="text-3xl font-bold mb-2">Taskify</h1>
           <p className="text-sm md:text-base opacity-90">

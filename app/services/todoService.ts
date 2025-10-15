@@ -23,6 +23,16 @@ export const updateTodo = async (id: string, completed: boolean, priority: 'low'
   return response.data;
 };
 
+ export const searchTodos = async (query: string) => {
+    const { data } = await axiosInstance.post("/todos/search", { query });
+    return data;
+  };
+
+  export const filterTodos = async (date: string) => {
+    const { data } = await axiosInstance.post("/todos/filter", { date });
+    return data;
+  };
+
 export const deleteTodo = async (id: string): Promise<void> => {
   await axiosInstance.delete(`/todos/${id}`);
 };

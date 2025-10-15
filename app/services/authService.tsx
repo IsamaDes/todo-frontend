@@ -8,11 +8,11 @@ export interface RegisterData {
   role: "admin" | "client" | "nutritionist";
 }
 
-export interface RegisterResponse {
-  message: string;
-  verificationToken: string;
-  user?: { name: string; email: string; role: string };
-}
+// export interface RegisterResponse {
+//   message: string;
+//   verificationToken: string;
+//   user?: { name: string; email: string; role: string };
+// }
 
 
 interface LoginData {
@@ -21,15 +21,16 @@ interface LoginData {
 }
 
 export interface ClientData {
+  id: string;
   name: string;
   email: string;
   role: string;
   createdAt?: string;
 }
 
-export const registerUser = async (data: RegisterData): Promise<RegisterResponse> => {
+export const registerUser = async (data: RegisterData) => {
   try {
-    const response = await axiosInstance.post<RegisterResponse>("/auth/register", data);
+    const response = await axiosInstance.post("/auth/register", data);
     return response.data;
   } catch (error: any) {
     logAxiosError(error, "REGISTER");
@@ -48,12 +49,22 @@ export const loginUser = async (data: LoginData) => {
   }
 };
 
-export const clientUser = async () => {
+export const clientUser = async (): Promise<ClientData> => {
   try{
-     const response = await axiosInstance.get("/client/profile");
-     return response.data;
+     const response = await axiosInstance.get("/client/profile/me");
+     return response.data.data;
   }catch(error: any){
    logAxiosError(error, "CLIENT_PROFILE");
+   throw error.response?.data || error;
+  }
+}
+
+export const getAdminOverview = async () => {
+  try{
+     const response = await axiosInstance.get("/admin/profile");
+     return response.data;
+  }catch(error: any){
+   logAxiosError(error, "ADMIN_PROFILE");
    throw error.response?.data || error;
   }
 }
