@@ -29,7 +29,7 @@ export default function TodoItem({ todo, onToggle, onDelete }: Props) {
       <div>
         <p className={todo.completed ? "line-through" : ""}>{todo.title}</p>
         <span className="text-xs italic text-gray-600">
-          Priority: {todo.priority.toUpperCase()}
+         Priority: {todo.priority ? todo.priority.toUpperCase() : "N/A"}
         </span>
       </div>
       {todo.dueDate && (
@@ -38,11 +38,11 @@ export default function TodoItem({ todo, onToggle, onDelete }: Props) {
           </span>
         )}
       <div className="flex gap-2">
-        <button onClick={onToggle} className="text-green-600">
-          ✓
+        <button onClick={onToggle} className="bg-green-600 text-white p-2 rounded-md">
+          Completed
         </button>
-        <button onClick={onDelete} className="text-red-600">
-          ✕
+        <button onClick={onDelete} className="bg-red-600 p-2 rounded-md">
+          Delete
         </button>
       </div>
     </div>

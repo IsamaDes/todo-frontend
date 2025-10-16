@@ -68,3 +68,13 @@ export const getAdminOverview = async () => {
    throw error.response?.data || error;
   }
 }
+
+export const getActiveClients = async () => {
+  try{
+    const response = await axiosInstance.get("/admin/active-clients");
+    return response.data;
+  }catch(error: any){
+  logAxiosError(error, "ADMIN_PROFILE");
+   throw error.response?.data || error
+  }
+}

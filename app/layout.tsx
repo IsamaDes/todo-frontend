@@ -1,5 +1,6 @@
-// app/layout.tsx
 import './globals.css';
+import { Toaster } from "react-hot-toast";
+
 
 export const metadata = {
   title: "To-Do App",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="">{children}</body>
+      <body className="">
+        <Toaster position="top-right" />
+        {children}</body>
     </html>
   );
 }
