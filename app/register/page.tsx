@@ -49,8 +49,26 @@ const Register = () => {
   const handleLogin = () => router.push("/login");
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 border rounded shadow">
-      <h2 className="text-2xl font-semibold mb-6 text-center">
+    <div className=" h-screen flex md:flex-row">
+      <div className="relative w-full md:w-1/2  md:h-auto">
+        <img src="/study.png"
+          alt="Healthy food"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white p-8">
+          <h1 className="text-3xl font-bold mb-2">Taskify</h1>
+          <p className="text-sm md:text-base opacity-90">
+            Manage your tasks without an itch.
+          </p>
+        </div>
+      </div>
+
+
+
+
+      <div className="flex-1 flex flex-col justify-center px-8 py-10 bg-gradient-to-br from-white to-gray-50 shadow-inner">
+          <div className="max-w-sm w-full mx-auto">
+          <h2 className="text-2xl font-semibold mb-6 text-center">
           Create Account
         </h2>
 
@@ -130,6 +148,10 @@ const Register = () => {
               Login here
             </button>
           </p>
+
+</div>
+</div>
+      
     </div>
   );
 };

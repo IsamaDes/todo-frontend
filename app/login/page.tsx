@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { loginUser } from "../services/authService";
 import { Eye, EyeOff } from 'lucide-react';
-import Image from "next/image";
 
 
 const Login = () => {
@@ -73,7 +72,6 @@ const Login = () => {
 
   return (
     <div className=" h-screen flex md:flex-row">
-      {/* Left Section – Image */}
       <div className="relative w-full md:w-1/2  md:h-auto">
         <img src="/taskimg.jpg"
           alt="Healthy food"
@@ -87,7 +85,6 @@ const Login = () => {
         </div>
       </div>
 
-      {/* Right Section – Form */}
       <div className="flex-1 flex flex-col justify-center px-8 py-10 bg-gradient-to-br from-white to-gray-50 shadow-inner">
         <div className="max-w-sm w-full mx-auto">
           <h2 className="text-3xl font-semibold text-gray-800 mb-6">Welcome Back 👋</h2>
